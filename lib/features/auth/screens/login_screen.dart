@@ -1,15 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
-import '../widgets/custom_text_field.dart';
-import '../widgets/primary_button.dart';
+import '../providers/auth_provider.dart';
+import '../../../widgets/custom_text_field.dart';
+import '../../../widgets/primary_button.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _submit() async {
+    final authProvider = context.read<AppAuthProvider>();
+    await authProvider.signIn(
+      _emailController.text,
+      _passwordController.text,
+    );
+
+    if (!mounted) return;
+    if (authProvider.isAuthenticated) {
+      context.go('/dashboard');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final authProvider = context.watch<AppAuthProvider>();
 
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
@@ -33,25 +64,37 @@ class LoginScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 24),
-              const CustomTextField(
+              CustomTextField(
+                controller: _emailController,
                 labelText: 'Email',
                 hintText: 'you@example.com',
                 prefixIcon: Icons.email_outlined,
                 keyboardType: TextInputType.emailAddress,
               ),
               const SizedBox(height: 16),
-              const CustomTextField(
+              CustomTextField(
+                controller: _passwordController,
                 labelText: 'Password',
                 hintText: 'Enter your password',
                 prefixIcon: Icons.lock_outline,
                 obscureText: true,
               ),
               const SizedBox(height: 24),
-              PrimaryButton(
-                text: 'Login',
-                width: double.infinity,
-                onPressed: () => context.go('/dashboard'),
-              ),
+              if (authProvider.status == AuthStatus.loading)
+                const Center(child: CircularProgressIndicator())
+              else
+                PrimaryButton(
+                  text: 'Login',
+                  width: double.infinity,
+                  onPressed: _submit,
+                ),
+              if (authProvider.errorMessage != null) ...[
+                const SizedBox(height: 16),
+                Text(
+                  authProvider.errorMessage!,
+                  style: TextStyle(color: theme.colorScheme.error),
+                ),
+              ],
               const SizedBox(height: 16),
               Align(
                 alignment: Alignment.center,
