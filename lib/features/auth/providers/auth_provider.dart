@@ -18,12 +18,15 @@ class AppAuthProvider extends ChangeNotifier {
   AuthStatus get status => _status;
   User? get user => _user;
   String? get errorMessage => _errorMessage;
-  bool get isAuthenticated => _status == AuthStatus.authenticated && _user != null;
+  bool get isAuthenticated =>
+      _status == AuthStatus.authenticated && _user != null;
 
   void _listenToAuthState() {
     _repository.authStateChanges().listen((user) {
       _user = user;
-      _status = user == null ? AuthStatus.unauthenticated : AuthStatus.authenticated;
+      _status = user == null
+          ? AuthStatus.unauthenticated
+          : AuthStatus.authenticated;
       _errorMessage = null;
       notifyListeners();
     });
@@ -35,7 +38,9 @@ class AppAuthProvider extends ChangeNotifier {
 
     try {
       _user = _repository.currentUser;
-      _status = _user == null ? AuthStatus.unauthenticated : AuthStatus.authenticated;
+      _status = _user == null
+          ? AuthStatus.unauthenticated
+          : AuthStatus.authenticated;
     } catch (e) {
       _status = AuthStatus.unauthenticated;
       _errorMessage = e.toString();
@@ -50,9 +55,14 @@ class AppAuthProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final user = await _repository.signInWithEmailAndPassword(email, password);
+      final user = await _repository.signInWithEmailAndPassword(
+        email,
+        password,
+      );
       _user = user;
-      _status = user == null ? AuthStatus.unauthenticated : AuthStatus.authenticated;
+      _status = user == null
+          ? AuthStatus.unauthenticated
+          : AuthStatus.authenticated;
     } catch (e) {
       _status = AuthStatus.unauthenticated;
       _errorMessage = e.toString();
@@ -67,9 +77,15 @@ class AppAuthProvider extends ChangeNotifier {
     notifyListeners();
 
     try {
-      final user = await _repository.registerWithEmailAndPassword(name, email, password);
+      final user = await _repository.registerWithEmailAndPassword(
+        name,
+        email,
+        password,
+      );
       _user = user;
-      _status = user == null ? AuthStatus.unauthenticated : AuthStatus.authenticated;
+      _status = user == null
+          ? AuthStatus.unauthenticated
+          : AuthStatus.authenticated;
     } catch (e) {
       _status = AuthStatus.unauthenticated;
       _errorMessage = e.toString();

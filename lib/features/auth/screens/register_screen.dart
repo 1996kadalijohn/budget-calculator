@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth_provider.dart';
-import '../../../widgets/custom_text_field.dart';
-import '../../../widgets/primary_button.dart';
+import '../../../shared/widgets/custom_text_field.dart';
+import '../../../shared/widgets/primary_button.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});

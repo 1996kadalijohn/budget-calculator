@@ -27,11 +27,31 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
   ];
 
   final List<NavigationDestination> _destinations = const [
-    NavigationDestination(icon: Icon(Icons.home_outlined), selectedIcon: Icon(Icons.home), label: 'Home'),
-    NavigationDestination(icon: Icon(Icons.attach_money_outlined), selectedIcon: Icon(Icons.attach_money), label: 'Income'),
-    NavigationDestination(icon: Icon(Icons.money_off_outlined), selectedIcon: Icon(Icons.money_off), label: 'Expense'),
-    NavigationDestination(icon: Icon(Icons.bar_chart_outlined), selectedIcon: Icon(Icons.bar_chart), label: 'Reports'),
-    NavigationDestination(icon: Icon(Icons.person_outline), selectedIcon: Icon(Icons.person), label: 'Profile'),
+    NavigationDestination(
+      icon: Icon(Icons.home_outlined),
+      selectedIcon: Icon(Icons.home),
+      label: 'Home',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.attach_money_outlined),
+      selectedIcon: Icon(Icons.attach_money),
+      label: 'Income',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.money_off_outlined),
+      selectedIcon: Icon(Icons.money_off),
+      label: 'Expense',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.bar_chart_outlined),
+      selectedIcon: Icon(Icons.bar_chart),
+      label: 'Reports',
+    ),
+    NavigationDestination(
+      icon: Icon(Icons.person_outline),
+      selectedIcon: Icon(Icons.person),
+      label: 'Profile',
+    ),
   ];
 
   @override

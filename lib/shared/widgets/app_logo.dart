@@ -4,11 +4,7 @@ class AppLogo extends StatelessWidget {
   final double size;
   final String title;
 
-  const AppLogo({
-    super.key,
-    this.size = 72,
-    this.title = 'Budget Calculator',
-  });
+  const AppLogo({super.key, this.size = 72, this.title = 'Budget Calculator'});
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +26,8 @@ class AppLogo extends StatelessWidget {
         Text(
           title,
           style: theme.textTheme.titleLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+            fontWeight: FontWeight.bold,
+          ),
         ),
       ],
     );

@@ -3,7 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth_provider.dart';
-import '../../../widgets/loading_indicator.dart';
+import '../../../shared/widgets/loading_indicator.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -32,9 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: SafeArea(
-        child: LoadingIndicator(message: 'Checking session...'),
-      ),
+      body: SafeArea(child: LoadingIndicator(message: 'Checking session...')),
     );
   }
 }

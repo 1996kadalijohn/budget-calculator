@@ -1,6 +1,6 @@
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../../models/income_model.dart';
+import '../models/income_model.dart';
 
 class IncomeRepository {
   IncomeRepository();

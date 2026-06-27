@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:buget_calculator/features/dashboard/providers/dashboard_provider.dart';
-import 'package:buget_calculator/models/income_model.dart';
-import 'package:buget_calculator/services/income/income_repository.dart';
+import 'package:buget_calculator/features/income/models/income_model.dart';
+import 'package:buget_calculator/features/income/repositories/income_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -29,10 +29,7 @@ void main() {
       final income = _sampleIncome(amount: 5000);
       repository.add(income);
 
-      repository.update(
-        income.id,
-        income.copyWith(amount: 9000),
-      );
+      repository.update(income.id, income.copyWith(amount: 9000));
 
       expect(repository.items.single.amount, 9000);
     });

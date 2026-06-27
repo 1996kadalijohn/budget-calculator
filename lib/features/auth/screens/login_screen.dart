@@ -3,8 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/auth_provider.dart';
-import '../../../widgets/custom_text_field.dart';
-import '../../../widgets/primary_button.dart';
+import '../../../shared/widgets/custom_text_field.dart';
+import '../../../shared/widgets/primary_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,10 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   Future<void> _submit() async {
     final authProvider = context.read<AppAuthProvider>();
-    await authProvider.signIn(
-      _emailController.text,
-      _passwordController.text,
-    );
+    await authProvider.signIn(_emailController.text, _passwordController.text);
 
     if (!mounted) return;
     if (authProvider.isAuthenticated) {

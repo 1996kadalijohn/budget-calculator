@@ -38,10 +38,7 @@ class DashboardScreen extends StatelessWidget {
                 style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 16),
-              Text(
-                'Welcome $userName!',
-                style: const TextStyle(fontSize: 18),
-              ),
+              Text('Welcome $userName!', style: const TextStyle(fontSize: 18)),
               const SizedBox(height: 8),
               const Text(
                 'We\'ll add real functionality later.',
