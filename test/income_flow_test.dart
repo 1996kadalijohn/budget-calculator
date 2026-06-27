@@ -1,66 +1,35 @@
-import 'dart:io';
-
-import 'package:buget_calculator/features/dashboard/providers/dashboard_provider.dart';
 import 'package:buget_calculator/features/income/models/income_model.dart';
 import 'package:buget_calculator/features/income/repositories/income_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 void main() {
-  TestWidgetsFlutterBinding.ensureInitialized();
+  group('IncomeRepository', () {
+    test('accepts future local and remote service dependencies', () {
+      final localService = Object();
+      final firestoreService = Object();
 
-  group('Income flow', () {
-    test('add adds an income entry and updates dashboard totals', () {
-      final provider = DashboardProvider();
+      final repository = IncomeRepository(
+        localService: localService,
+        firestoreService: firestoreService,
+      );
+
+      expect(repository.localService, same(localService));
+      expect(repository.firestoreService, same(firestoreService));
+    });
+
+    test('defines income method contracts without implementations', () {
       final repository = IncomeRepository();
       final income = _sampleIncome(amount: 75000);
 
-      repository.add(income);
-      provider.addIncome(income.amount);
-
-      expect(repository.items, hasLength(1));
-      expect(repository.items.single.amount, 75000);
-      expect(provider.income, 150000);
-      expect(provider.savings, 108000);
-    });
-
-    test('edit updates the stored amount', () {
-      final repository = IncomeRepository();
-      final income = _sampleIncome(amount: 5000);
-      repository.add(income);
-
-      repository.update(income.id, income.copyWith(amount: 9000));
-
-      expect(repository.items.single.amount, 9000);
-    });
-
-    test('delete removes the income entry', () {
-      final repository = IncomeRepository();
-      final income = _sampleIncome(amount: 3200);
-      repository.add(income);
-
-      repository.delete(income.id);
-
-      expect(repository.items, isEmpty);
-    });
-
-    test('hive persistence keeps income after restart', () async {
-      final tempDir = await Directory.systemTemp.createTemp('income_hive_test');
-      Hive.init(tempDir.path);
-
-      final repository = IncomeRepository();
-      repository.add(_sampleIncome(amount: 12000));
-      await repository.saveToHive('income_box');
-
-      final reloadedRepository = IncomeRepository();
-      await reloadedRepository.loadFromHive('income_box');
-
-      expect(reloadedRepository.items, hasLength(1));
-      expect(reloadedRepository.items.single.amount, 12000);
-
-      await Hive.deleteBoxFromDisk('income_box', path: tempDir.path);
-      await Hive.close();
-      await tempDir.delete(recursive: true);
+      expect(repository.getAllIncome('user-1'), throwsUnimplementedError);
+      expect(repository.getIncomeById('income-1'), throwsUnimplementedError);
+      expect(repository.addIncome(income), throwsUnimplementedError);
+      expect(repository.updateIncome(income), throwsUnimplementedError);
+      expect(repository.deleteIncome('income-1'), throwsUnimplementedError);
+      expect(
+        () => repository.watchIncome('user-1'),
+        throwsUnimplementedError,
+      );
     });
 
     test('firestore mapping preserves income values', () {
