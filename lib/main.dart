@@ -9,6 +9,12 @@ import 'features/auth/repositories/auth_repository.dart';
 import 'features/auth/services/auth_service.dart';
 import 'routes/app_routes.dart';
 
+AuthRepository? _testAuthRepository;
+
+void setTestAuthRepository(AuthRepository repository) {
+  _testAuthRepository = repository;
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
@@ -21,11 +27,12 @@ class BudgetCalculatorApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final baseTheme = ThemeData.light(useMaterial3: true);
-    final authService = AuthService();
-    final repository = FirebaseAuthRepository(authService: authService);
 
     return ChangeNotifierProvider(
-      create: (_) => AppAuthProvider(repository: repository),
+      create: (_) => AppAuthProvider(
+        repository: _testAuthRepository ??
+            FirebaseAuthRepository(authService: AuthService()),
+      ),
       child: MaterialApp.router(
         title: 'Budget Calculator',
         theme: baseTheme.copyWith(
