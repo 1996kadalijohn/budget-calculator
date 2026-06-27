@@ -20,6 +20,12 @@ class DashboardProvider extends ChangeNotifier {
 
   double get spentPercentage => budget == 0 ? 0 : (expense / budget) * 100;
 
+  void addIncome(double amount) {
+    _income += amount;
+    _savings = _income - _expense;
+    notifyListeners();
+  }
+
   void refreshFakeData() {
     _income = 75000;
     _expense = 42000;
