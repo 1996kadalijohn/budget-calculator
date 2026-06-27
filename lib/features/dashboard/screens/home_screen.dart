@@ -40,7 +40,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Hello John 👋',
+                            'Good Morning ☀️',
                             style: theme.textTheme.headlineSmall?.copyWith(
                               fontWeight: FontWeight.w700,
                               color: theme.colorScheme.onSurface,
@@ -48,7 +48,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                           const SizedBox(height: 4),
                           Text(
-                            'Your budget is looking healthy today.',
+                            'John • Budget Calculator',
                             style: theme.textTheme.bodyLarge?.copyWith(
                               color: theme.colorScheme.onSurfaceVariant,
                             ),
@@ -59,7 +59,13 @@ class HomeScreen extends StatelessWidget {
                     CircleAvatar(
                       radius: 24,
                       backgroundColor: theme.colorScheme.primaryContainer,
-                      child: Icon(Icons.person, color: theme.colorScheme.primary),
+                      child: Text(
+                        'J',
+                        style: theme.textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          color: theme.colorScheme.primary,
+                        ),
+                      ),
                     ),
                   ],
                 ),
@@ -70,42 +76,40 @@ class HomeScreen extends StatelessWidget {
                 style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
               ),
               const SizedBox(height: 12),
-              DashboardSummaryCard(
-                title: 'Budget',
-                subtitle: 'Monthly goal',
-                amount: '₹${dashboardProvider.budget.toInt().toString()}',
-                color: theme.colorScheme.primary,
-                isPrimary: true,
-              ),
-              const SizedBox(height: 12),
-              Row(
+              GridView.count(
+                crossAxisCount: 2,
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                childAspectRatio: 1.08,
                 children: [
-                  Expanded(
-                    child: DashboardSummaryCard(
-                      title: 'Income',
-                      subtitle: 'Expected',
-                      amount: '₹${dashboardProvider.income.toInt().toString()}',
-                      color: const Color(0xFF16A34A),
-                    ),
+                  DashboardSummaryCard(
+                    title: 'Budget',
+                    subtitle: 'Monthly goal',
+                    amount: '₹${dashboardProvider.budget.toInt().toString()}',
+                    color: theme.colorScheme.primary,
+                    isPrimary: true,
                   ),
-                  const SizedBox(width: 12),
-                  Expanded(
-                    child: DashboardSummaryCard(
-                      title: 'Expense',
-                      subtitle: 'Spent',
-                      amount: '₹${dashboardProvider.expense.toInt().toString()}',
-                      color: const Color(0xFFDC2626),
-                    ),
+                  DashboardSummaryCard(
+                    title: 'Income',
+                    subtitle: 'Expected',
+                    amount: '₹${dashboardProvider.income.toInt().toString()}',
+                    color: const Color(0xFF16A34A),
+                  ),
+                  DashboardSummaryCard(
+                    title: 'Expense',
+                    subtitle: 'Spent',
+                    amount: '₹${dashboardProvider.expense.toInt().toString()}',
+                    color: const Color(0xFFDC2626),
+                  ),
+                  DashboardSummaryCard(
+                    title: 'Savings',
+                    subtitle: 'Remaining balance',
+                    amount: '₹${dashboardProvider.savings.toInt().toString()}',
+                    color: const Color(0xFF16A34A),
                   ),
                 ],
-              ),
-              const SizedBox(height: 12),
-              DashboardSummaryCard(
-                title: 'Savings',
-                subtitle: 'Remaining balance',
-                amount: '₹${dashboardProvider.savings.toInt().toString()}',
-                color: const Color(0xFF16A34A),
-                fullWidth: true,
               ),
               const SizedBox(height: 24),
               Text(
@@ -214,7 +218,7 @@ class DashboardSummaryCard extends StatelessWidget {
       color: isPrimary ? color : theme.colorScheme.surface,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(22)),
       child: Padding(
-        padding: EdgeInsets.all(isPrimary ? 20 : 16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -239,7 +243,7 @@ class DashboardSummaryCard extends StatelessWidget {
               style: TextStyle(
                 color: isPrimary ? Colors.white : color,
                 fontWeight: FontWeight.w700,
-                fontSize: isPrimary ? 24 : 18,
+                fontSize: isPrimary ? 22 : 18,
               ),
             ),
           ],
