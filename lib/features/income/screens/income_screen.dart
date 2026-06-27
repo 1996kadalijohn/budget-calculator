@@ -34,21 +34,6 @@ class _IncomeScreenState extends State<IncomeScreen> {
     ),
   ];
 
-  Future<void> _pickDate() async {
-    final pickedDate = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2020),
-      lastDate: DateTime(2100),
-    );
-
-    if (pickedDate != null) {
-      setState(() {
-        _selectedDate = pickedDate;
-      });
-    }
-  }
-
   void _openAddIncomeSheet() {
     _amountController.clear();
     _descriptionController.clear();
@@ -93,7 +78,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
                     ),
                     const SizedBox(height: 12),
                     DropdownButtonFormField<String>(
-                      value: _selectedCategory,
+                      initialValue: _selectedCategory,
                       decoration: const InputDecoration(
                         labelText: 'Category',
                         border: OutlineInputBorder(),
@@ -201,7 +186,7 @@ class _IncomeScreenState extends State<IncomeScreen> {
       body: ListView.separated(
         padding: const EdgeInsets.fromLTRB(16, 8, 16, 96),
         itemCount: _entries.length,
-        separatorBuilder: (_, __) => const SizedBox(height: 10),
+        separatorBuilder: (_, _) => const SizedBox(height: 10),
         itemBuilder: (context, index) {
           final entry = _entries[index];
           return Card(

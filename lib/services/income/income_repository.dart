@@ -36,7 +36,7 @@ class IncomeRepository {
     final box = await Hive.openBox<Map>('income_$boxName');
     _items.clear();
     for (final entry in box.values) {
-      _items.add(IncomeModel.fromJson(Map<String, dynamic>.from(entry as Map)));
+      _items.add(IncomeModel.fromJson(Map<String, dynamic>.from(entry)));
     }
     await box.close();
   }
