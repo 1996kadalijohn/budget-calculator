@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:buget_calculator/models/income_model.dart';
+import 'package:buget_calculator/features/income/models/income_model.dart';
 
 void main() {
   group('IncomeModel', () {

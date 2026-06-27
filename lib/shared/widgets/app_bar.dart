@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' as material;
 
-class CustomAppBar extends material.StatelessWidget implements material.PreferredSizeWidget {
+class CustomAppBar extends material.StatelessWidget
+    implements material.PreferredSizeWidget {
   final String title;
   final List<material.Widget>? actions;
   final material.Widget? leading;
@@ -31,5 +32,6 @@ class CustomAppBar extends material.StatelessWidget implements material.Preferre
   }
 
   @override
-  material.Size get preferredSize => const material.Size.fromHeight(material.kToolbarHeight);
+  material.Size get preferredSize =>
+      const material.Size.fromHeight(material.kToolbarHeight);
 }

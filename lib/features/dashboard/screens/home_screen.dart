@@ -10,7 +10,8 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final dashboardProvider = context.watch<DashboardProvider>();
-    final progressValue = (dashboardProvider.expense / dashboardProvider.budget).clamp(0.0, 1.0);
+    final progressValue = (dashboardProvider.expense / dashboardProvider.budget)
+        .clamp(0.0, 1.0);
 
     return Scaffold(
       backgroundColor: theme.colorScheme.surfaceContainerLow,
@@ -73,7 +74,9 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 18),
               Text(
                 'Budget Overview',
-                style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 12),
               GridView.count(
@@ -114,7 +117,9 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 24),
               Text(
                 'Recent Transactions',
-                style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+                style: theme.textTheme.titleLarge?.copyWith(
+                  fontWeight: FontWeight.w700,
+                ),
               ),
               const SizedBox(height: 12),
               _TransactionTile(
@@ -154,10 +159,18 @@ class HomeScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Budget Progress', style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700)),
+                        Text(
+                          'Budget Progress',
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
                         Text(
                           '${dashboardProvider.spentPercentage.toStringAsFixed(0)}%',
-                          style: theme.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w700, color: theme.colorScheme.primary),
+                          style: theme.textTheme.titleMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                            color: theme.colorScheme.primary,
+                          ),
                         ),
                       ],
                     ),
@@ -175,8 +188,18 @@ class HomeScreen extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Spent so far', style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
-                        Text('Budget left', style: theme.textTheme.bodyMedium?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                        Text(
+                          'Spent so far',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ),
+                        Text(
+                          'Budget left',
+                          style: theme.textTheme.bodyMedium?.copyWith(
+                            color: theme.colorScheme.onSurfaceVariant,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -234,7 +257,9 @@ class DashboardSummaryCard extends StatelessWidget {
               subtitle,
               style: TextStyle(
                 fontSize: 12,
-                color: isPrimary ? Colors.white70 : theme.colorScheme.onSurfaceVariant,
+                color: isPrimary
+                    ? Colors.white70
+                    : theme.colorScheme.onSurfaceVariant,
               ),
             ),
             const SizedBox(height: 10),
@@ -289,13 +314,29 @@ class _TransactionTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(title, style: theme.textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.w600)),
+                  Text(
+                    title,
+                    style: theme.textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
                   const SizedBox(height: 2),
-                  Text(subtitle, style: theme.textTheme.bodySmall?.copyWith(color: theme.colorScheme.onSurfaceVariant)),
+                  Text(
+                    subtitle,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
                 ],
               ),
             ),
-            Text(amount, style: theme.textTheme.bodyMedium?.copyWith(color: amountColor, fontWeight: FontWeight.w700)),
+            Text(
+              amount,
+              style: theme.textTheme.bodyMedium?.copyWith(
+                color: amountColor,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
           ],
         ),
       ),

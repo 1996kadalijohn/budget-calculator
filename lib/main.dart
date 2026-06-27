@@ -30,7 +30,8 @@ class BudgetCalculatorApp extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (_) => AppAuthProvider(
-        repository: _testAuthRepository ??
+        repository:
+            _testAuthRepository ??
             FirebaseAuthRepository(authService: AuthService()),
       ),
       child: MaterialApp.router(

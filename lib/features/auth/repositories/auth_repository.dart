@@ -6,7 +6,11 @@ abstract class AuthRepository {
   User? get currentUser;
   Stream<User?> authStateChanges();
   Future<User?> signInWithEmailAndPassword(String email, String password);
-  Future<User?> registerWithEmailAndPassword(String name, String email, String password);
+  Future<User?> registerWithEmailAndPassword(
+    String name,
+    String email,
+    String password,
+  );
   Future<void> signOut();
 }
 

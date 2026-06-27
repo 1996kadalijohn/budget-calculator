@@ -17,21 +17,9 @@ class _IncomeScreenState extends State<IncomeScreen> {
   DateTime? _selectedDate;
 
   final List<_IncomeEntry> _entries = const [
-    _IncomeEntry(
-      title: 'Salary',
-      amount: '₹50,000',
-      subtitle: 'Today',
-    ),
-    _IncomeEntry(
-      title: 'Freelancing',
-      amount: '₹8,000',
-      subtitle: 'Yesterday',
-    ),
-    _IncomeEntry(
-      title: 'Bonus',
-      amount: '₹3,200',
-      subtitle: '2 days ago',
-    ),
+    _IncomeEntry(title: 'Salary', amount: '₹50,000', subtitle: 'Today'),
+    _IncomeEntry(title: 'Freelancing', amount: '₹8,000', subtitle: 'Yesterday'),
+    _IncomeEntry(title: 'Bonus', amount: '₹3,200', subtitle: '2 days ago'),
   ];
 
   void _openAddIncomeSheet() {
@@ -54,7 +42,9 @@ class _IncomeScreenState extends State<IncomeScreen> {
               child: Container(
                 decoration: BoxDecoration(
                   color: Theme.of(sheetContext).colorScheme.surface,
-                  borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+                  borderRadius: const BorderRadius.vertical(
+                    top: Radius.circular(24),
+                  ),
                 ),
                 padding: const EdgeInsets.fromLTRB(20, 20, 20, 24),
                 child: Column(
@@ -63,9 +53,8 @@ class _IncomeScreenState extends State<IncomeScreen> {
                   children: [
                     Text(
                       'Add Income',
-                      style: Theme.of(sheetContext).textTheme.titleLarge?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: Theme.of(sheetContext).textTheme.titleLarge
+                          ?.copyWith(fontWeight: FontWeight.w700),
                     ),
                     const SizedBox(height: 16),
                     TextField(
@@ -84,8 +73,14 @@ class _IncomeScreenState extends State<IncomeScreen> {
                         border: OutlineInputBorder(),
                       ),
                       items: const [
-                        DropdownMenuItem(value: 'Salary', child: Text('Salary')),
-                        DropdownMenuItem(value: 'Freelancing', child: Text('Freelancing')),
+                        DropdownMenuItem(
+                          value: 'Salary',
+                          child: Text('Salary'),
+                        ),
+                        DropdownMenuItem(
+                          value: 'Freelancing',
+                          child: Text('Freelancing'),
+                        ),
                         DropdownMenuItem(value: 'Bonus', child: Text('Bonus')),
                       ],
                       onChanged: (value) {
@@ -144,7 +139,8 @@ class _IncomeScreenState extends State<IncomeScreen> {
                             return;
                           }
 
-                          final dashboardProvider = context.read<DashboardProvider>();
+                          final dashboardProvider = context
+                              .read<DashboardProvider>();
                           dashboardProvider.addIncome(amount);
                           Navigator.of(sheetContext).pop();
                         },
@@ -177,7 +173,9 @@ class _IncomeScreenState extends State<IncomeScreen> {
       appBar: AppBar(
         title: Text(
           'Income',
-          style: theme.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700),
+          style: theme.textTheme.titleLarge?.copyWith(
+            fontWeight: FontWeight.w700,
+          ),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -192,7 +190,9 @@ class _IncomeScreenState extends State<IncomeScreen> {
           return Card(
             margin: EdgeInsets.zero,
             elevation: 0,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(18),
+            ),
             color: theme.colorScheme.surface,
             child: Padding(
               padding: const EdgeInsets.all(16),
@@ -201,7 +201,10 @@ class _IncomeScreenState extends State<IncomeScreen> {
                   CircleAvatar(
                     radius: 20,
                     backgroundColor: theme.colorScheme.primaryContainer,
-                    child: Icon(Icons.attach_money, color: theme.colorScheme.primary),
+                    child: Icon(
+                      Icons.attach_money,
+                      color: theme.colorScheme.primary,
+                    ),
                   ),
                   const SizedBox(width: 12),
                   Expanded(
@@ -210,7 +213,9 @@ class _IncomeScreenState extends State<IncomeScreen> {
                       children: [
                         Text(
                           entry.title,
-                          style: theme.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+                          style: theme.textTheme.bodyLarge?.copyWith(
+                            fontWeight: FontWeight.w600,
+                          ),
                         ),
                         const SizedBox(height: 2),
                         Text(

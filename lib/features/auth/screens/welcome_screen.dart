@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../widgets/app_logo.dart';
-import '../../../widgets/primary_button.dart';
+import '../../../shared/widgets/app_logo.dart';
+import '../../../shared/widgets/primary_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
@@ -18,10 +18,7 @@ class WelcomeScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const AppLogo(
-                size: 88,
-                title: 'Budget Calculator',
-              ),
+              const AppLogo(size: 88, title: 'Budget Calculator'),
               const SizedBox(height: 24),
               Text(
                 'Take control of your money',
